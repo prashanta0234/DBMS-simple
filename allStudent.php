@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Dbms</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<head>
+  <title>All Student</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="./login.css">    
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.table{
+  margin-top:50px;
+}
+</style>
 </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
               <a class="navbar-brand" href="./home.html">DESHBORD</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,27 +57,40 @@
               </div>
             </div>
           </nav>
+<div class="table container">
+<h2>HTML Table</h2>
 
-          <div class="main">
-            <h2>Student Registry System.</h2>
-            <h5>This Project developed By</h5>
-            <span>
-                <h4>Name: Prashanta Chakraborty</h4>
-                <h4>id: 20211103036</h4>
-            </span>
-            <span>
-            <h4>Name: Md rezwan</h4>
-            <h4>id: 20211103039</h4>
-            </span>
-            <span>
-                <h4>Name: MD AKTER UZZAMAN</h4>
-                <h4>id: 19202103463</h4>
-            </span>
-            <span>
-                <h4>Name: Forhad noyon</h4>
-                <h4>id: 19202103463</h4>
-            </span>
-            
-          </div>
-    </body>
+<table>
+  <tr>
+    <th>No</th>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>202</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>203</td>
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>204</td>
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>205</td>
+    <td>UK</td>
+  </tr>
+  
+</table>
+</div>
+
+
+</body>
 </html>
+

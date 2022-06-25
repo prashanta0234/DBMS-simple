@@ -12,3 +12,17 @@
     border-radius: 10px;
     padding: 10px 20px;
 }
+
+.main{
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+.main h5{
+    color: #BF4B4B;
+    margin: 20px 0px;
+}
+.main span{
+    color: #082948;
+    margin:20px 0;
+}
