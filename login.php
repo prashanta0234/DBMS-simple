@@ -1,3 +1,31 @@
+<?php
+    session_start();
+    include('config.php');
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $query = $connection->prepare("SELECT * FROM admins WHERE email=:email");
+        $query->bindParam("email", $email, PDO::PARAM_STR);
+        $query->execute();
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        // echo("<script>console.log('PHP: " . $query . "');</script>");
+        // echo "<script>console.log('.json_encoded($result). ');</script>";
+        echo "<script>console.log('" . json_encode($result['password']) . "');</script>";
+
+        if (!$result) {
+            echo '<p class="error">Username password combination is wrong line!</p>';
+        } else {
+            if ($password==$result['password']) {
+                // $_SESSION['user_id'] = $result['id'];
+                echo '<p class="success">Congratulations, you are logged in!</p>';
+                header('Location:home.html');
+            } else {
+                echo '<p class="error">Username password combination is wrong !</p>';
+            }
+        }
+    }
+    ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +49,7 @@
 
                             </div>
                             <div class="card-body">
-                                <form action="./login.php" method="post">
+                                <form action="" method="post">
                                     <div class="form-group">
                                         <lebel for="email">Email</lebel>
                                         <input type="email" name="email" required class="form-control" id="username">
