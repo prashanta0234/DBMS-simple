@@ -1,0 +1,14 @@
+.card-header h4{
+    text-align: center;
+}
+.button{
+   text-align: center;
+  
+}
+.button button{
+    background-color: #1BA6A6;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
