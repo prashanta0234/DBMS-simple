@@ -1,29 +1,40 @@
+<?php
+ session_start();
+ include('config.php');
+
+   if (isset($_POST['addAdmin'])) {
+        $email = $_POST['email'];
+        $pass = $_POST['password'];
+        
+        $sql = "INSERT INTO admins(email,password) VALUES ('$email','$pass')";
+
+        if (mysqli_query( $sql)) {
+		 echo "New record created successfully";
+		} else {
+		 echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+		} 
+    }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>All Student</title>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
+  <!-- <link rel="stylesheet" href="./addAdmin.css"> -->
+  <link rel="stylesheet" href="./addAdmin.css">    
+  <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" href="./login.css"> -->
 <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+/* .main{
+  width:500px;
+    height: auto;
+    
+} */
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-.table{
-  margin-top:50px;
-}
 </style>
 </head>
 <body>
@@ -57,7 +68,21 @@ tr:nth-child(even) {
               </div>
             </div>
           </nav>
-
+<div class="main container">
+  
+  <div class="body">
+  <h5>ADD AS ADMIN</h5>
+    <form method="post" action="" name="add-form" >
+    <span>
+      <input type="email" placeholder="Enter email" name="email" required>
+    </span>
+    <span>
+      <input type="password" placeholder="Enter password" name="password" required>
+    </span>
+       <button type="submit" class="btn btn-primary" name="addAdmin" value="addAdmin">Submit</button>
+    </form>
+  </div>
+</div>
 
 
 </body>

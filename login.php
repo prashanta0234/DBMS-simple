@@ -8,8 +8,7 @@
         $query->bindParam("email", $email, PDO::PARAM_STR);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
-        // echo("<script>console.log('PHP: " . $query . "');</script>");
-        // echo "<script>console.log('.json_encoded($result). ');</script>";
+       
         echo "<script>console.log('" . json_encode($result['password']) . "');</script>";
 
         if (!$result) {
