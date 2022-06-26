@@ -1,20 +1,53 @@
 <?php
- session_start();
- include('config.php');
+//  session_start();
+//  include('./config.php');
+// require_once "./config.php";
 
-   if (isset($_POST['addAdmin'])) {
-        $email = $_POST['email'];
-        $pass = $_POST['password'];
+  //  if (isset($_POST['addAdmin'])) {
+  //       $email = $_POST['email'];
+  //       $pass = $_POST['password'];
         
-        $sql = "INSERT INTO admins(email,password) VALUES ('$email','$pass')";
+  //       $sql = "INSERT INTO admins(email,password) VALUES ('$email','$pass')";
 
-        if (mysqli_query( $sql)) {
-		 echo "New record created successfully";
-		} else {
-		 echo "Error: " . $sql . "<br>" . mysqli_error($connection);
-		} 
+  //       if (mysqli_query( $sql)) {
+	// 	 echo "New record created successfully";
+	// 	} else {
+	// 	 echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+	// 	} 
+  //   }
+  
+ ?>
+
+<?php
+    session_start();
+    include('config.php');
+    if (isset($_POST['addAdmin'])) {
+        // $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        
+        $query = $connection->prepare("SELECT * FROM admins WHERE email=:email");
+        $query->bindParam("email", $email, PDO::PARAM_STR);
+        $query->execute();
+        if ($query->rowCount() > 0) {
+            echo '<p class="error">The email address is already registered!</p>';
+        }
+        if ($query->rowCount() == 0) {
+            $query = $connection->prepare("INSERT INTO admins(password,email) VALUES (:password,:email)");
+            // $query->bindParam("username", $username, PDO::PARAM_STR);
+            $query->bindParam("password", $password, PDO::PARAM_STR);
+            $query->bindParam("email", $email, PDO::PARAM_STR);
+            $result = $query->execute();
+            if ($result) {
+                echo '<p class="success">Your registration was successful!</p>';
+            } else {
+                echo '<p class="error">Something went wrong!</p>';
+            }
+        }
     }
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
