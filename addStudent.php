@@ -1,9 +1,34 @@
+<?php
+    session_start();
+    include('config.php');
+    if (isset($_POST['addAdmin'])) {
+        $name = $_POST['name'];
+        $father = $_POST['father'];
+        $department = $_POST['department'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        
+        $query = $connection->prepare("INSERT INTO students(name,father,phone,department,email) VALUES (:name,:father,:phone,:department,:email)");
+        $query->bindParam("name", $name, PDO::PARAM_STR);
+        $query->bindParam("father", $father, PDO::PARAM_STR);
+        $query->bindParam("phone", $phone, PDO::PARAM_STR);$query->bindParam("department", $department, PDO::PARAM_STR);
+        $query->bindParam("email", $email, PDO::PARAM_STR);
+        $result = $query->execute();
+        if ($result) {
+              
+        } else {
+            echo '<p class="error">Something went wrong!</p>';
+        }
+        
+    }
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>All Student</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
+  <link rel="stylesheet" href="./addAdmin.css">      
+  <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <style>
 table {
@@ -51,19 +76,34 @@ tr:nth-child(even) {
                     <a class="nav-link" href="./addAdmin.php">Add Admin</a>
                   </li>
                 </ul>
-                <!-- <span class="navbar-text">
-                  Navbar text with an inline element
-                </span> -->
               </div>
             </div>
           </nav>
-<div class="mx-auto">
-<div class="main container m-auto">
-    <div>
-        <input type="text" placeholder="Name" name="name">
-    </div>
+
+<div class="main container ">
+<div class="body">
+  <h5>ADD Student info</h5>
+    <form method="post" action="" name="add-form" >
+    <span>
+      <input type="text" placeholder="Enter Student name" name="name" required>
+    </span>
+    <span>
+      <input type="text" placeholder="Enter Father`s name" name="father" required>
+    </span>
+    <span>
+      <input type="text" placeholder="Enter Departmant" name="department" required>
+    </span>
+    <span>
+      <input type="email" placeholder="Enter email" name="email" required>
+    </span>
+    <span>
+      <input type="number" placeholder="Enter Phone number" name="phone" required>
+    </span>
+       <button type="submit" class="btn btn-primary" name="addAdmin" value="addAdmin">Submit</button>
+    </form>
+  </div>
 </div>
-</div>
+
 
 
 </body>
