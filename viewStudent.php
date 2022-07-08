@@ -24,6 +24,10 @@ tr:nth-child(even) {
 .table{
   margin-top:50px;
 }
+.searchData{
+display:flex;
+justify-content:center;
+}
 </style>
 </head>
 <body>
@@ -62,6 +66,20 @@ tr:nth-child(even) {
 <div class="input-group mb-3 m-3 search">
   <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
   <button class="btn btn-outline-secondary" type="button" id="button-addon2">search</button>
+</div>
+
+<div class="searchData">
+<div class="card text-center" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">name</h5>
+    <h5 class="card-title">email</h5>
+    <h5 class="card-title">father</h5>
+    <h5 class="card-title">phone</h5>
+    <h5 class="card-title">department</h5>
+    
+    <a href="#" class="btn btn-primary">Delete</a>
+    <a href="#" class="btn btn-primary">Update</a>
+  </div>
 </div>
 </div>
 
