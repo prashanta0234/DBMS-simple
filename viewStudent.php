@@ -58,7 +58,12 @@ tr:nth-child(even) {
             </div>
           </nav>
 
-
+<div class="container ">
+<div class="input-group mb-3 m-3 search">
+  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2">search</button>
+</div>
+</div>
 
 </body>
 </html>
