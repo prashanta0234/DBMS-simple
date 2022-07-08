@@ -4,6 +4,7 @@
   <title>All Student</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
+    <!-- <link rel="stylesheet" href="./addAdmin.css">    -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <style>
 table {
@@ -27,6 +28,13 @@ tr:nth-child(even) {
 .searchData{
 display:flex;
 justify-content:center;
+}
+.body input{
+  display: block;
+    margin: auto;
+    width:80%;
+    margin-top: 10px;
+    height: 50px;
 }
 </style>
 </head>
@@ -77,8 +85,53 @@ justify-content:center;
     <h5 class="card-title">phone</h5>
     <h5 class="card-title">department</h5>
     
-    <a href="#" class="btn btn-primary">Delete</a>
-    <a href="#" class="btn btn-primary">Update</a>
+    <a href="#" class="btn btn-danger">Delete</a>
+
+    <!-- Vertically centered modal -->
+    
+    
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+Update
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> ADD Student info</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="body">
+
+    <form method="post" action="" name="add-form" >
+    <span>
+      <input type="text" placeholder="Enter Student name" name="name" required>
+    </span>
+    <span>
+      <input type="text" placeholder="Enter Father`s name" name="father" required>
+    </span>
+    <span>
+      <input type="text" placeholder="Enter Departmant" name="department" required>
+    </span>
+    <span>
+      <input type="email" placeholder="Enter email" name="email" required>
+    </span>
+    <span>
+      <input type="number" placeholder="Enter Phone number" name="phone" required>
+    </span>
+       <button type="submit" class="btn btn-primary" name="addAdmin" value="addAdmin">Submit</button>
+    </form>
+  </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
   </div>
 </div>
 </div>
