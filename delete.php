@@ -5,8 +5,8 @@
 
 if ($connect->query($sql) == TRUE) {
      echo '<script language="javascript">';
-     echo 'alert("Delete Successfuly")';
-     echo '</script>'
+     echo 'alert("delete Successfuly")';
+     echo '</script>';
   header('Location:viewStudent.php');
 } else {
 

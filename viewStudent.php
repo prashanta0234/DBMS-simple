@@ -63,6 +63,15 @@ i{
 .searchinput{
   width:500px
 }
+.head i{
+  color:black;
+  
+}
+.head p{
+  font-size:100px;
+ 
+ 
+}
 </style>
 </head>
 <body>
@@ -131,7 +140,9 @@ i{
     <?php
     if($flag==true){
       ?>
+      <div class="head"><p><i class="bi bi-person-circle"></i></p></div>
     <h5 class="card-title">Name: <?php echo $nam ?></h5>
+    <h5 class="card-title">Id: <?php echo $stid ?></h5>
     <h5 class="card-title">Email: <?php echo $mail ?></h5>
     <h5 class="card-title">Father: <?php echo $father ?></h5>
     <h5 class="card-title">Phone: <?php echo $phone ?></h5>
