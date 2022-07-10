@@ -15,6 +15,11 @@
         $query->bindParam("email", $email, PDO::PARAM_STR);
         $result = $query->execute();
         if ($result) {
+         
+            echo '<script language="javascript">';
+    echo 'alert("Added successfull")';
+    echo '</script>';
+          
               
         } else {
             echo '<p class="error">Something went wrong!</p>';

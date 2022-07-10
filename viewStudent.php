@@ -1,24 +1,39 @@
+<?php
+  require("connect.inc.php");
+  if(isset($_GET['id'])){
+    $id = $_GET['id'];
+  }
+  $flag=false;
+  $nam = NULL;
+  $mail = NULL;
+  $father = NULL;
+  $phone = NULL;
+  $dpt = NULL;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>All Student</title>
+  <script src="https://kit.fontawesome.com/8e4025cbe6.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <!-- <link rel="stylesheet" href="./addAdmin.css">    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <!-- @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css"); -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+   
 <style>
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
-
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
-
 tr:nth-child(even) {
   background-color: #dddddd;
 }
@@ -29,12 +44,24 @@ tr:nth-child(even) {
 display:flex;
 justify-content:center;
 }
+.searchData i{
+  color:white;
+}
 .body input{
   display: block;
     margin: auto;
     width:80%;
     margin-top: 10px;
     height: 50px;
+}
+.body button{
+  margin-top:10px;
+}
+i{
+  color: red;
+}
+.searchinput{
+  width:500px
 }
 </style>
 </head>
@@ -70,31 +97,77 @@ justify-content:center;
             </div>
           </nav>
 
-<div class="container ">
+
+<?php
+  if(isset($_POST["sid"])){
+    $flag=true;
+    $stid = $_POST["sid"];
+    $sql = "SELECT * FROM students WHERE id=$stid;";
+    $result = mysqli_query($connect,$sql);
+    While($row = mysqli_fetch_assoc($result)){
+      $nam = $row['name'];
+      $mail = $row['email'];
+      $father = $row['father'];
+      $phone = $row['phone'];
+      $dpt = $row['department'];
+    }
+
+  }
+?>
+<div class="container searchinput ">
+<form action="viewStudent.php" method="POST">
 <div class="input-group mb-3 m-3 search">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2">search</button>
+ 
+    <input class="form-control" placeholder="Student Id" aria-label="Recipient's username" aria-describedby="button-addon2" type="text" name="sid">
+  
+    <button class="btn btn-outline-secondary"  type="submit" id="button-addon2"> <i class="bi bi-search"></i></button>
+ 
 </div>
+</form>
 
 <div class="searchData">
-<div class="card text-center" style="width: 18rem;">
+<div class="card text-center" style="min-width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">name</h5>
-    <h5 class="card-title">email</h5>
-    <h5 class="card-title">father</h5>
-    <h5 class="card-title">phone</h5>
-    <h5 class="card-title">department</h5>
-    
-    <a href="#" class="btn btn-danger">Delete</a>
+    <?php
+    if($flag==true){
+      ?>
+    <h5 class="card-title">Name: <?php echo $nam ?></h5>
+    <h5 class="card-title">Email: <?php echo $mail ?></h5>
+    <h5 class="card-title">Father: <?php echo $father ?></h5>
+    <h5 class="card-title">Phone: <?php echo $phone ?></h5>
+    <h5 class="card-title">Department: <?php echo $dpt ?></h5>
+    <?php
+    } ?>
+
+   
+
+<a href="delete.php?rn=<?php echo $stid; ?>" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</a>
+
 
     <!-- Vertically centered modal -->
     
-    
+    <?php
+  if(isset($_POST['name'])){
+      $nam = $_POST['name'];
+      $father = $_POST['father'];
+      $dpt = $_POST['department'];
+      $mail = $_POST['email'];
+      $phone = $_POST['phone'];
+      $update = "UPDATE students SET name='$nam', father='$father', department='$dpt', email='$mail', phone=$phone WHERE id=$id;";
+      $connect->query($update);
+      if($connect->query($update)){
+        echo '<script language="javascript">';
+echo 'alert("Update Successfuly")';
+echo '</script>';
+      }
+      //echo $id;
+      
+  }
+?> 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-Update
+<i class="bi bi-pencil-square"></i> Update
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -105,24 +178,23 @@ Update
       </div>
       <div class="modal-body">
       <div class="body">
-
-    <form method="post" action="" name="add-form" >
+    <form method="post" action="viewStudent.php?id=<?php echo $stid; ?>" name="add-form" >
     <span>
-      <input type="text" placeholder="Enter Student name" name="name" required>
+      <input type="text" placeholder="Enter Student name" name="name" value="<?php echo $nam; ?>"required>
     </span>
     <span>
-      <input type="text" placeholder="Enter Father`s name" name="father" required>
+      <input type="text" placeholder="Enter Father`s name" name="father" value="<?php echo $father; ?>" required>
     </span>
     <span>
-      <input type="text" placeholder="Enter Departmant" name="department" required>
+      <input type="text" placeholder="Enter Departmant" name="department" value="<?php echo $dpt; ?>"required>
     </span>
     <span>
-      <input type="email" placeholder="Enter email" name="email" required>
+      <input type="email" placeholder="Enter email" name="email" value="<?php echo $mail; ?>"required>
     </span>
     <span>
-      <input type="number" placeholder="Enter Phone number" name="phone" required>
+      <input type="number" placeholder="Enter Phone number" name="phone" value="<?php echo $phone; ?>"required>
     </span>
-       <button type="submit" class="btn btn-primary" name="addAdmin" value="addAdmin">Submit</button>
+       <button type="submit" class="btn btn-primary" name="addAdmin" value="addAdmin"><i class="bi bi-save"></i> Save</button>
     </form>
   </div>
       </div>
@@ -130,12 +202,9 @@ Update
     </div>
   </div>
 </div>
-
 </div>
   </div>
 </div>
 </div>
-
 </body>
 </html>
-

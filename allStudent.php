@@ -1,3 +1,8 @@
+<?php
+
+  require("connect.inc.php");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,30 +67,37 @@ tr:nth-child(even) {
 
 <table>
   <tr>
-    <th>No</th>
+    
     <th>ID</th>
     <th>Name</th>
+    <th>Father</th>
+    <th>Phone</th>
+    <th>Department</th>
+    <th>Email</th>
   </tr>
-  <tr>
-    <td>1</td>
-    <td>202</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>203</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>204</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>205</td>
-    <td>UK</td>
-  </tr>
+  <?php
+    $sql = "SELECT * FROM students;";
+    $resuslt = mysqli_query($connect,$sql);
+    while($row = mysqli_fetch_assoc($resuslt)){
+      $id = $row['id'];
+      $nam = $row['name'];
+      $father = $row['father'];
+      $phn = $row['phone'];
+      $dpt = $row['department'];
+      $mail = $row['email'];
+  ?>
+      <tr>
+        <td><?php echo $id ?></td>
+        <td><?php echo $nam ?></td>
+        <td><?php echo $father ?></td>
+        <td><?php echo $phn ?></td>
+        <td><?php echo $dpt ?></td>
+        <td><?php echo $mail ?></td>
+      </tr>
+  <?php
+    }
+  ?>
+
   
 </table>
 </div>

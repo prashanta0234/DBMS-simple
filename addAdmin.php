@@ -39,7 +39,9 @@
             $query->bindParam("email", $email, PDO::PARAM_STR);
             $result = $query->execute();
             if ($result) {
-                echo '<p class="success">Your registration was successful!</p>';
+              echo '<script language="javascript">';
+              echo 'alert("Added successfull")';
+              echo '</script>';
             } else {
                 echo '<p class="error">Something went wrong!</p>';
             }
@@ -53,7 +55,7 @@
 <html>
 <head>
   <title>All Student</title>
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="./addAdmin.css"> -->
   <link rel="stylesheet" href="./addAdmin.css">    
@@ -112,7 +114,7 @@
     <span>
       <input type="password" placeholder="Enter password" name="password" required>
     </span>
-       <button type="submit" class="btn btn-primary" name="addAdmin" value="addAdmin">Submit</button>
+       <button type="submit" class="btn btn-primary" name="addAdmin" value="addAdmin"><i class="bi bi-arrow-bar-down"></i> ADD</button>
     </form>
   </div>
 </div>
