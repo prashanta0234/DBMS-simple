@@ -63,7 +63,7 @@ tr:nth-child(even) {
             </div>
           </nav>
 <div class="table container">
-<h2>HTML Table</h2>
+<h2>All student Details</h2>
 
 <table>
   <tr>

@@ -129,7 +129,7 @@ i{
 <form action="viewStudent.php" method="POST">
 <div class="input-group mb-3 m-3 search">
  
-    <input class="form-control" placeholder="Student Id" aria-label="Recipient's username" aria-describedby="button-addon2" type="email" name="sid">
+    <input class="form-control" placeholder="Student Email" aria-label="Recipient's username" aria-describedby="button-addon2" type="email" name="sid">
   
     <button class="btn btn-outline-secondary"  type="submit" id="button-addon2"> <i class="bi bi-search"></i></button>
  
