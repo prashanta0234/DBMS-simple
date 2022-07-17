@@ -5,6 +5,7 @@
   }
   $flag=false;
   $nam = NULL;
+
   $mail = NULL;
   $father = NULL;
   $phone = NULL;
@@ -111,10 +112,11 @@ i{
   if(isset($_POST["sid"])){
     $flag=true;
     $stid = $_POST["sid"];
-    $sql = "SELECT * FROM students WHERE id=$stid;";
+    $sql = "SELECT * FROM students WHERE email='$stid'";
     $result = mysqli_query($connect,$sql);
     While($row = mysqli_fetch_assoc($result)){
       $nam = $row['name'];
+      $stuid=$row['id'];
       $mail = $row['email'];
       $father = $row['father'];
       $phone = $row['phone'];
@@ -127,7 +129,7 @@ i{
 <form action="viewStudent.php" method="POST">
 <div class="input-group mb-3 m-3 search">
  
-    <input class="form-control" placeholder="Student Id" aria-label="Recipient's username" aria-describedby="button-addon2" type="text" name="sid">
+    <input class="form-control" placeholder="Student Id" aria-label="Recipient's username" aria-describedby="button-addon2" type="email" name="sid">
   
     <button class="btn btn-outline-secondary"  type="submit" id="button-addon2"> <i class="bi bi-search"></i></button>
  
@@ -142,7 +144,7 @@ i{
       ?>
       <div class="head"><p><i class="bi bi-person-circle"></i></p></div>
     <h5 class="card-title">Name: <?php echo $nam ?></h5>
-    <h5 class="card-title">Id: <?php echo $stid ?></h5>
+    <h5 class="card-title">Id: <?php echo $stuid ?></h5>
     <h5 class="card-title">Email: <?php echo $mail ?></h5>
     <h5 class="card-title">Father: <?php echo $father ?></h5>
     <h5 class="card-title">Phone: <?php echo $phone ?></h5>
@@ -152,7 +154,7 @@ i{
 
    
 
-<a href="delete.php?rn=<?php echo $stid; ?>" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</a>
+<a href="delete.php?rn=<?php echo $stuid; ?>" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</a>
 
 
     <!-- Vertically centered modal -->
@@ -164,7 +166,7 @@ i{
       $dpt = $_POST['department'];
       $mail = $_POST['email'];
       $phone = $_POST['phone'];
-      $update = "UPDATE students SET name='$nam', father='$father', department='$dpt', email='$mail', phone=$phone WHERE id=$id;";
+      $update = "UPDATE students SET name='$nam', father='$father', department='$dpt', email='$mail', phone=$phone WHERE email='$mail';";
       $connect->query($update);
       if($connect->query($update)){
         echo '<script language="javascript">';
